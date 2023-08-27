@@ -20,11 +20,14 @@ function showmsg() {
       // const VAL_signbody = this.$request.body
       if (VAL_signheader) {
         chavy.setdata(VAL_signheader, KEY_signheader)
-        chavy.msg("coVAL_signheaderkieName", `获取Cookie: 成功`, VAL_signheader)
+        chavy.msg("VAL_signheader", `获取Cookie: 成功`, VAL_signheader)
       }
-      // if (VAL_signbody) chavy.setdata(VAL_signbody, KEY_signbody)
+      if (VAL_signbody) {
+        chavy.setdata(VAL_signbody, KEY_signbody)
+        chavy.msg("VAL_signbody", `获取Cookie: 成功`, VAL_signbody)
+      }
       // console.log(this.$request)
-      chavy.msg("cookieName", `获取Cookie: 成功`, ``)
+      // chavy.msg("cookieName", `获取Cookie: 成功`, ``)
     } else {
       chavy.msg("cookieName", `获取Cookie: 失败`, ``)
     }
