@@ -15,6 +15,7 @@ function showmsg() {
     if (VAL_signbody) chavy.setdata(VAL_signbody, KEY_signbody)
     chavy.msg(cookieName, `获取Cookie: 成功`, ``)
   }
+  chavy.msg(cookieName, `获取Cookie: 成功`, ``)
 }
 
 function init() {
