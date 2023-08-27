@@ -16,6 +16,9 @@ function showmsg() {
     // if (this.$request && this.$request.headers && this.$request.body) {
     //console.log(this)
     if (this.$request) {
+      chavy.log(KEY_signheader);
+      chavy.log(KEY_signbody);
+      chavy.log(KEY_mobile);
       const VAL_signheader = JSON.stringify($request.headers)
       // const VAL_signbody = this.$request.body
       if (VAL_signheader) {
