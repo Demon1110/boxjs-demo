@@ -8,8 +8,8 @@ const KEY_mobile = 'wxread_mobile_cary'
 !(async () => {
   await showmsg()
 })()
-  .catch((e) => $.logErr(e))
-  .finally(() => $.done())
+  .catch((e) => KEY_mobile.log(e))
+  .finally(() => KEY_mobile.done())
 
 function showmsg() {
   return new Promise((resolve) => {
@@ -18,7 +18,12 @@ function showmsg() {
     if (this.$request) {
       const VAL_signheader = JSON.stringify($request.headers)
       // const VAL_signbody = this.$request.body
-      if (VAL_signheader) chavy.setdata(VAL_signheader, KEY_signheader)
+      if (VAL_signheader) {
+        chavy.setdata(VAL_signheader, KEY_signheader)
+        chavy.msg("coVAL_signheaderkieName", `获取Cookie: 成功`, ``)
+      } else {
+        chavy.msg("coVAL_signheaderkieName", `获取Cookie: 失败`, ``)
+      }
       // if (VAL_signbody) chavy.setdata(VAL_signbody, KEY_signbody)
       // console.log(this.$request)
       chavy.msg("cookieName", `获取Cookie: 成功`, ``)
