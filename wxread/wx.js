@@ -1,5 +1,5 @@
 const chavy = init()
-$.KEY_mobile = 'wxread_cary'
+// $.KEY_mobile = 'wxread_cary'
 
 !(async () => {
   await showmsg()
