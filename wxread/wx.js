@@ -16,6 +16,7 @@ function showmsg() {
   return new Promise((resolve) => {
     // if (this.$request && this.$request.headers && this.$request.body) {
     if (this.$request && this.$request.headers) {
+      chavy.log(KEY_signkey);
       chavy.log(KEY_signheader);
       chavy.log(KEY_signbody);
       chavy.log(KEY_mobile);
@@ -32,7 +33,7 @@ function showmsg() {
       const VAL_signbody = this.$request.body
       if (VAL_signbody) {
         chavy.setdata(VAL_signbody, KEY_signbody)
-        chavy.msg("VAL_signbody", `获取Cookie: 成功`, VAL_signbody)
+        chavy.msg("VAL_signbody", `获取body: 成功`, VAL_signbody)
       }
       // console.log(this.$request)
       // chavy.msg("cookieName", `获取Cookie: 成功`, ``)
