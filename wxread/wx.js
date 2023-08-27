@@ -20,7 +20,7 @@ function showmsg() {
       // const VAL_signbody = this.$request.body
       // if (VAL_signheader) chavy.setdata(VAL_signheader, KEY_signheader)
       // if (VAL_signbody) chavy.setdata(VAL_signbody, KEY_signbody)
-      console.log(this.$request)
+      // console.log(this.$request)
       chavy.msg("cookieName", `获取Cookie: 成功`, ``)
     } else {
       chavy.msg("cookieName", `获取Cookie: 失败`, ``)
