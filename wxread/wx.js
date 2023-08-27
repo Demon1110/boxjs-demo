@@ -27,7 +27,7 @@ function showmsg() {
       }
       if ($request.headers && $request.headers['skey']) {
         const skey = $request.headers['skey']
-        chavy.setdata(KEY_signkey, skey)
+        chavy.setdata(skey, KEY_signkey)
         chavy.msg("KEY_signkey", `获取skey: 成功`, skey)
       }
       const VAL_signbody = this.$request.body
