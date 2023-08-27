@@ -20,7 +20,7 @@ function showmsg() {
       chavy.log(KEY_signbody);
       chavy.log(KEY_mobile);
       const VAL_signheader = JSON.stringify($request.headers)
-      // const VAL_signbody = this.$request.body
+      const VAL_signbody = this.$request.body
       if (VAL_signheader) {
         chavy.setdata(VAL_signheader, KEY_signheader)
         chavy.msg("VAL_signheader", `获取Cookie: 成功`, VAL_signheader)
