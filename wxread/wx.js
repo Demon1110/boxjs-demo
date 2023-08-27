@@ -13,11 +13,12 @@ const KEY_mobile = 'wxread_mobile_cary'
 
 function showmsg() {
   return new Promise((resolve) => {
-    if (this.$request && this.$request.headers && this.$request.body) {
-      const VAL_signheader = JSON.stringify($request.headers)
-      const VAL_signbody = this.$request.body
-      if (VAL_signheader) chavy.setdata(VAL_signheader, KEY_signheader)
-      if (VAL_signbody) chavy.setdata(VAL_signbody, KEY_signbody)
+    // if (this.$request && this.$request.headers && this.$request.body) {
+    if (this.$request) {
+      // const VAL_signheader = JSON.stringify($request.headers)
+      // const VAL_signbody = this.$request.body
+      // if (VAL_signheader) chavy.setdata(VAL_signheader, KEY_signheader)
+      // if (VAL_signbody) chavy.setdata(VAL_signbody, KEY_signbody)
       chavy.msg(cookieName, `获取Cookie: 成功`, ``)
     } else {
       chavy.msg("cookieName", `获取Cookie: 失败`, ``)
