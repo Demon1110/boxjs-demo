@@ -15,6 +15,7 @@ let isToday = cookielist.cookies && today === cookielist.today
 //
 ;(() => {
   let body = null
+   magicJS.notifyDebug("haha")
   if (magicJS.isResponse) {
     magicJS.notifyDebug(`body request ${JSON.stringify(magicJS.request)}`)
     switch (true) {
