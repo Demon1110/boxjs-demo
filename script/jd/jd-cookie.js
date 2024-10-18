@@ -12,7 +12,7 @@ if (magicJS.read(jd_cookie_key)) {
 }
 
 let isToday = cookielist.cookies && today === cookielist.today
-
+//
 ;(() => {
   let body = null
   if (magicJS.isResponse) {
