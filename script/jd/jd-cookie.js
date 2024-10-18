@@ -16,7 +16,7 @@ let isToday = cookielist.cookies && today === cookielist.today
 ;(() => {
   //magicJS.notifyDebug("haha")
   // 通知
-  magicJS.notify(scriptName, 'subTitle', 'content')
+  magicJS.notify(scriptName, 'subTitle', 'today=' + isToday)
 })()
 
 // prettier-ignore
