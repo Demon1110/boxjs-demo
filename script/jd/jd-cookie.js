@@ -19,7 +19,7 @@ let isToday = cookielist.cookies && today === cookielist.today
     magicJS.notifyDebug(`body request ${JSON.stringify(magicJS.request)}`)
     switch (true) {
       // 推荐去广告，最后问号不能去掉，以免匹配到story模式
-      case /^https:\/\/app\.m\.jd\.com\/client.action/.test(
+      case /^https:\/\/api\.m\.jd\.com\/client.action/.test(
         magicJS.request.url
       ):
         try {
