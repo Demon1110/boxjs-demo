@@ -16,6 +16,7 @@ let isToday = cookielist.cookies && today === cookielist.today
 ;(() => {
   let body = null
   if (magicJS.isResponse) {
+    magicJS.notifyDebug(`body request ${JSON.stringify(magicJS.request)}`)
     switch (true) {
       // 推荐去广告，最后问号不能去掉，以免匹配到story模式
       case /^https:\/\/app\.m\.jd\.com\/client.action/.test(
@@ -23,11 +24,10 @@ let isToday = cookielist.cookies && today === cookielist.today
       ):
         try {
           let obj = JSON.parse(magicJS.response.body)
-          magicJS.logDebug(`obj=${JSON.stringify(obj)}`)
+          magicJS.notifyDebug(`obj=${JSON.stringify(obj)}`)
           body = JSON.stringify(obj)
-          magicJS.logWarning(`body request ${magicJS.request()}`)
           if (!isToday) {
-            cookielist.cookies = magicJS.request().cookies || []
+            cookielist.cookies = magicJS.request.cookies || []
             cookielist.today = today
           }
         } catch (err) {
@@ -35,11 +35,11 @@ let isToday = cookielist.cookies && today === cookielist.today
         }
         break
       default:
-        magicJS.logWarning('触发意外的请求处理，请确认脚本或复写配置正常。')
+        magicJS.notifyDebug('触发意外的请求处理，请确认脚本或复写配置正常1。')
         break
     }
   } else {
-    magicJS.logWarning('触发意外的请求处理，请确认脚本或复写配置正常。')
+    magicJS.notifyDebug('触发意外的请求处理，请确认脚本或复写配置正常2。')
   }
   if (body) {
     magicJS.done({ body })
