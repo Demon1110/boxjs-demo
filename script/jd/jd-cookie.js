@@ -14,39 +14,9 @@ if (magicJS.read(jd_cookie_key)) {
 let isToday = cookielist.cookies && today === cookielist.today
 //
 ;(() => {
-  let body = null
-   magicJS.notifyDebug("haha")
-  if (magicJS.isResponse) {
-    magicJS.notifyDebug(`body request ${JSON.stringify(magicJS.request)}`)
-    switch (true) {
-      // 推荐去广告，最后问号不能去掉，以免匹配到story模式
-      case /^https:\/\/api\.m\.jd\.com\/client.action/.test(
-        magicJS.request.url
-      ):
-        try {
-          let obj = JSON.parse(magicJS.response.body)
-          magicJS.notifyDebug(`obj=${JSON.stringify(obj)}`)
-          body = JSON.stringify(obj)
-          if (!isToday) {
-            cookielist.cookies = magicJS.request.cookies || []
-            cookielist.today = today
-          }
-        } catch (err) {
-          magicJS.logError(`推荐去广告出现异常：${err}`)
-        }
-        break
-      default:
-        magicJS.notifyDebug('触发意外的请求处理，请确认脚本或复写配置正常1。')
-        break
-    }
-  } else {
-    magicJS.notifyDebug('触发意外的请求处理，请确认脚本或复写配置正常2。')
-  }
-  if (body) {
-    magicJS.done({ body })
-  } else {
-    magicJS.done()
-  }
+  //magicJS.notifyDebug("haha")
+  // 通知
+  magicJS.notify(scriptName, 'subTitle', 'content')
 })()
 
 // prettier-ignore
