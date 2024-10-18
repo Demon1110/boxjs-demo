@@ -1,7 +1,7 @@
 const chavy = init()
 
-const KEY_signheader = 'wxread_signheader_cary'
-const KEY_mobile = 'wxread_mobile_cary'
+const KEY_signheader = 'JD_signheader_cary'
+const KEY_mobile = 'JD_mobile_cary'
 
 !(async () => {
   await showmsg()
