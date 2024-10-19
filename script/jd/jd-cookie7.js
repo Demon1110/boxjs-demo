@@ -96,11 +96,7 @@ let flush = processArgs.flush || true
   } else {
     magicJS.notifyDebug('触发意外的请求处理，请确认脚本或复写配置正常2。')
   }
-  if (body) {
-    magicJS.done({ body })
-  } else {
-    magicJS.done()
-  }
+  magicJS.done()
 })()
 
 // prettier-ignore
