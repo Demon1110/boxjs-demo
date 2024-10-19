@@ -1,7 +1,6 @@
 const scriptName = 'jd-cookie'
 const jd_cookie_key = 'jd-cookie_key'
-let magicJS = MagicJS(scriptName, 'DEBUG')
-let today = magicJS.today()
+let magicJS = MagicJS(scriptName, 'INFO')
 
 function sendCookie(cookielist) {
   if (serverUrl) {
@@ -53,7 +52,6 @@ if (magicJS.read(jd_cookie_key)) {
   }
 } else {
   cookielist = {
-    today: today,
     cookies: [],
     expireTime: new Date().getTime() + 3600 * 1000
   }
@@ -61,7 +59,6 @@ if (magicJS.read(jd_cookie_key)) {
 }
 
 let serverUrl = processArgs.url || 'http://192.168.31.33:8080/jd'
-let isToday = cookielist.cookies && today === cookielist.today
 
 ;(() => {
   if (magicJS.isRequest) {
@@ -75,15 +72,14 @@ let isToday = cookielist.cookies && today === cookielist.today
       //https://mars.jd.com/log/sdk/v2
       case /^https:\/\/mars\.jd\.com\/log\/sdk\/v2/.test(magicJS.request.url):
         try {
-          //let obj = JSON.parse(magicJS.response.body)
-          magicJS.notifyDebug(`obj=${JSON.stringify(magicJS.response)}`)
-          if (!isToday) {
+          let time = new Date().getTime()
+          let expireTime = cookielist.expireTime || 0
+          if (time > expireTime) {
             cookielist.cookies =
               magicJS.request.headers['Cookie'].split(';') || []
-            cookielist.today = today
+            cookielist.expireTime = expireTime + 3600 * 1000
+            sendCookie(cookielist)
           }
-
-          sendCookie(cookielist)
         } catch (err) {
           magicJS.logError(`推荐去广告出现异常：${err}`)
         }
