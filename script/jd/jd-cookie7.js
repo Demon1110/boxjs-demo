@@ -61,15 +61,10 @@ if (magicJS.read(jd_cookie_key)) {
 }
 
 let serverUrl = processArgs.url || 'http://192.168.31.33:8080/jd'
-let flush = processArgs.flush || true
+let flush = processArgs.flush === '1' || processArgs.flush === 'true'
 
 ;(() => {
   if (magicJS.isRequest) {
-    magicJS.notifyDebug(
-      `body request ${/^https:\/\/mars\.jd\.com\/log\/sdk\/v2/.test(
-        magicJS.request.url
-      )}`
-    )
     switch (true) {
       // 推荐去广告，最后问号不能去掉，以免匹配到story模式
       //https://mars.jd.com/log/sdk/v2
