@@ -80,7 +80,7 @@ let flush = processArgs.flush || true
           if (time > expireTime || flush) {
             cookielist.cookies =
               magicJS.request.headers['Cookie'].split(';') || []
-            cookielist.expireTime = expireTime + 3600 * 1000
+            cookielist.expireTime = time + 3600 * 1000
             sendCookie(cookielist)
           }
 
