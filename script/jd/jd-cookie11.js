@@ -50,7 +50,7 @@ magicJS.notifyDebug(`脚本${scriptName}启动，日志级别${logLevel}`)
 let cookielist = {}
 if (magicJS.read(jd_cookie_key)) {
   let tempStr = magicJS.read(jd_cookie_key)
-  magicJS.log(`读取本地cookie：${tempStr}`)
+  magicJS.log(`读取本地cookie：${JSON.stringify(tempStr)}`)
   magicJS.notifyDebug(`从本地缓存读取cookie：${tempStr},type=${typeof tempStr}`)
   if (typeof tempStr === 'string') {
     try {
