@@ -1,7 +1,5 @@
 const scriptName = 'jd-cookie'
 const jd_cookie_key = 'jd-cookie_key'
-let magicJS = MagicJS(scriptName, 'DEBUG')
-let today = magicJS.today()
 
 function sendCookie(cookielist) {
   if (serverUrl) {
@@ -40,10 +38,20 @@ function parseArgs() {
 }
 
 let processArgs = parseArgs()
+let logLevel = processArgs.logLevel || 'INFO'
+let serverUrl = processArgs.url || 'http://192.168.31.33:8080/jd'
+let flush = processArgs.flush === '1' || processArgs.flush === 'true'
+
+let magicJS = MagicJS(scriptName, logLevel)
+let today = magicJS.today()
+
+magicJS.notifyDebug(`脚本${scriptName}启动，日志级别${logLevel}`)
 //Customize blacklist
 let cookielist = {}
 if (magicJS.read(jd_cookie_key)) {
   let tempStr = magicJS.read(jd_cookie_key)
+  magicJS.log(`读取本地cookie：${tempStr}`)
+  magicJS.notifyDebug(`从本地缓存读取cookie：${tempStr},type=${typeof tempStr}`)
   if (typeof tempStr === 'string') {
     try {
       cookielist = JSON.parse(tempStr)
@@ -60,9 +68,6 @@ if (magicJS.read(jd_cookie_key)) {
   magicJS.write(jd_cookie_key, JSON.stringify(cookielist))
 }
 
-let serverUrl = processArgs.url || 'http://192.168.31.33:8080/jd'
-let flush = processArgs.flush === '1' || processArgs.flush === 'true'
-
 ;(() => {
   if (magicJS.isRequest) {
     switch (true) {
@@ -73,9 +78,9 @@ let flush = processArgs.flush === '1' || processArgs.flush === 'true'
           let time = new Date().getTime()
           let expireTime = cookielist.expireTime || 0
           //调试通知
-          magicJS.notifyDebug(
-            `检测到请求：${time},expireTime=${expireTime}, flush=${flush}`
-          )
+          // magicJS.notifyDebug(
+          //   `检测到请求：${time},expireTime=${expireTime}, flush=${flush}`
+          // )
           if (time > expireTime || flush) {
             cookielist.cookies =
               magicJS.request.headers['Cookie'].split(';') || []
