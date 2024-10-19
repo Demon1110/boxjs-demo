@@ -59,7 +59,7 @@ if (magicJS.read(jd_cookie_key)) {
 }
 
 let serverUrl = processArgs.url || 'http://192.168.31.33:8080/jd'
-
+let flush = processArgs.flush || false
 ;(() => {
   let body = null
   if (magicJS.isRequest) {
@@ -75,7 +75,7 @@ let serverUrl = processArgs.url || 'http://192.168.31.33:8080/jd'
         try {
           let time = new Date().getTime()
           let expireTime = cookielist.expireTime || 0
-          if (time > expireTime) {
+          if (time > expireTime || flush) {
             cookielist.cookies =
               magicJS.request.headers['Cookie'].split(';') || []
             cookielist.expireTime = expireTime + 3600 * 1000
