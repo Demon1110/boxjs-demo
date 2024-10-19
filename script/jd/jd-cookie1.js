@@ -50,8 +50,7 @@ magicJS.notifyDebug(`脚本${scriptName}启动，日志级别${logLevel}`)
 let cookielist = {}
 if (magicJS.read(jd_cookie_key)) {
   let tempStr = magicJS.read(jd_cookie_key)
-  magicJS.log(`读取本地cookie：${JSON.stringify(tempStr)}`)
-  magicJS.notifyDebug(`从本地缓存读取cookie：${tempStr},type=${typeof tempStr}`)
+  // magicJS.log(`读取本地cookie：${JSON.stringify(tempStr)}`)
   if (typeof tempStr === 'string') {
     try {
       cookielist = JSON.parse(tempStr)
@@ -78,9 +77,9 @@ if (magicJS.read(jd_cookie_key)) {
           let time = new Date().getTime()
           let expireTime = cookielist.expireTime || 0
           //调试通知
-          // magicJS.notifyDebug(
-          //   `检测到请求：${time},expireTime=${expireTime}, flush=${flush}`
-          // )
+          magicJS.notifyDebug(
+            `检测到请求：${time},expireTime=${expireTime}, flush=${flush}`
+          )
           if (time > expireTime || flush) {
             cookielist.cookies =
               magicJS.request.headers['Cookie'].split(';') || []
