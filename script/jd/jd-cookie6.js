@@ -61,6 +61,7 @@ if (magicJS.read(jd_cookie_key)) {
 let serverUrl = processArgs.url || 'http://192.168.31.33:8080/jd'
 
 ;(() => {
+  let body = null
   if (magicJS.isRequest) {
     magicJS.notifyDebug(
       `body request ${
