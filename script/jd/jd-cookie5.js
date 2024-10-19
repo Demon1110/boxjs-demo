@@ -66,9 +66,9 @@ let isToday = cookielist.cookies && today === cookielist.today
 ;(() => {
   if (magicJS.isRequest) {
     magicJS.notifyDebug(
-      `body request ${/^https:\/\/mars\.jd\.com\/log\/sdk\/v2/.test(
+      `body request ${
         magicJS.request.url
-      )}`
+      }, ${/^https:\/\/mars\.jd\.com\/log\/sdk\/v2/.test(magicJS.request.url)}`
     )
     switch (true) {
       // 推荐去广告，最后问号不能去掉，以免匹配到story模式
