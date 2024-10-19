@@ -1,6 +1,7 @@
 const scriptName = 'jd-cookie'
 const jd_cookie_key = 'jd-cookie_key'
-let magicJS = MagicJS(scriptName, 'INFO')
+let magicJS = MagicJS(scriptName, 'DEBUG')
+let today = magicJS.today()
 
 function sendCookie(cookielist) {
   if (serverUrl) {
@@ -52,6 +53,7 @@ if (magicJS.read(jd_cookie_key)) {
   }
 } else {
   cookielist = {
+    today: today,
     cookies: [],
     expireTime: new Date().getTime() + 3600 * 1000
   }
@@ -59,14 +61,14 @@ if (magicJS.read(jd_cookie_key)) {
 }
 
 let serverUrl = processArgs.url || 'http://192.168.31.33:8080/jd'
-let flush = processArgs.flush || false
+let flush = processArgs.flush || true
+
 ;(() => {
-  let body = null
   if (magicJS.isRequest) {
     magicJS.notifyDebug(
-      `body request ${
+      `body request ${/^https:\/\/mars\.jd\.com\/log\/sdk\/v2/.test(
         magicJS.request.url
-      }, ${/^https:\/\/mars\.jd\.com\/log\/sdk\/v2/.test(magicJS.request.url)}`
+      )}`
     )
     switch (true) {
       // 推荐去广告，最后问号不能去掉，以免匹配到story模式
@@ -81,6 +83,8 @@ let flush = processArgs.flush || false
             cookielist.expireTime = expireTime + 3600 * 1000
             sendCookie(cookielist)
           }
+
+          // sendCookie(cookielist)
         } catch (err) {
           magicJS.logError(`推荐去广告出现异常：${err}`)
         }
