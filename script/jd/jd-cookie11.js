@@ -85,6 +85,7 @@ if (magicJS.read(jd_cookie_key)) {
             cookielist.cookies =
               magicJS.request.headers['Cookie'].split(';') || []
             cookielist.expireTime = time + 3600 * 1000
+            magicJS.write(jd_cookie_key, JSON.stringify(cookielist))
             sendCookie(cookielist)
           }
 
