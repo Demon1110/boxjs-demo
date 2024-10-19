@@ -43,7 +43,14 @@ let processArgs = parseArgs()
 //Customize blacklist
 let cookielist = {}
 if (magicJS.read(jd_cookie_key)) {
-  cookielist = JSON.parse(magicJS.read(jd_cookie_key))
+  let tempStr = magicJS.read(jd_cookie_key)
+  if (typeof tempStr === 'string') {
+    try {
+      cookielist = JSON.parse(tempStr)
+    } catch (e) {}
+  } else {
+    cookielist = tempStr
+  }
 } else {
   cookielist = {
     today: today,
