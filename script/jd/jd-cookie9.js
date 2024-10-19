@@ -72,6 +72,10 @@ let flush = processArgs.flush === '1' || processArgs.flush === 'true'
         try {
           let time = new Date().getTime()
           let expireTime = cookielist.expireTime || 0
+          //调试通知
+          magicJS.notifyDebug(
+            `检测到请求：${time > expireTime}, flush=${flush}`
+          )
           if (time > expireTime || flush) {
             cookielist.cookies =
               magicJS.request.headers['Cookie'].split(';') || []
