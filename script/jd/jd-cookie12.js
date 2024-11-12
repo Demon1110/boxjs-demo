@@ -25,6 +25,7 @@ function sendCookie(cookielist) {
 }
 
 function updateVikaField(cookielist) {
+  magicJS.notifyDebug('开始更新vika字段' + magicJS.platform())
   var cookieStr = (cookielist.cookies || []).join(';')
   magicJS.post(
     {
