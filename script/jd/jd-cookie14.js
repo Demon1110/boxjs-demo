@@ -71,7 +71,7 @@ let magicJS = MagicJS(scriptName, logLevel)
 let today = magicJS.today()
 
 // magicJS.notifyDebug(`脚本${scriptName}启动，日志级别${logLevel}`)
-magicJS.notifyDebug(`开始更新vika字段:${magicJS.platform()}`)
+magicJS.notifyDebug(`开始更新vika字段:${magicJS.platform}`)
 //Customize blacklist
 let cookielist = {}
 if (magicJS.read(jd_cookie_key)) {
