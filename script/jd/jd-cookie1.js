@@ -25,17 +25,8 @@ function sendCookie(cookielist) {
 }
 
 function updateVikaField(cookielist) {
-  let recordId = 'recTTpujznoMq'
-  let obj = {
-    records: [
-      {
-        recordId: recordId,
-        fields: {
-          多行文本: JSON.stringify(cookielist)
-        }
-      }
-    ]
-  }
+  var cookieStr = (cookielist.cookies || []).join(';')
+  var recordId = 'recTTpujznoMq'
   magicJS.post(
     {
       url: 'https://api.vika.cn/fusion/v1/datasheets/dstvpyxSRujo9BzNr1/records',
@@ -43,7 +34,12 @@ function updateVikaField(cookielist) {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + vikaToken
       },
-      body: JSON.stringify(obj)
+      body:
+        "{records:[{recordId:'" +
+        recordId +
+        "',fields:{标题:'test2',多行文本:'" +
+        cookieStr +
+        "'}}]}"
     },
     (err, res, body) => {
       if (err) {
