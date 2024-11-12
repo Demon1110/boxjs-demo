@@ -34,7 +34,7 @@ function updateVikaField(cookielist) {
         'Authorization': 'Bearer ' + vikaToken
       },
       body:
-        '{"records":[{"recordId":"recWShPpT20z8","fields":{"标题":"test2","多行文本":"' +
+        '{"records":[{"recordId":"recWShPpT20z8","fields":{"多行文本":"' +
         cookieStr +
         '"}}]}'
     },
