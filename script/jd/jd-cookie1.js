@@ -24,6 +24,37 @@ function sendCookie(cookielist) {
   }
 }
 
+function updateVikaField(cookielist) {
+  let recordId = 'recTTpujznoMq'
+  let obj = {
+    records: [
+      {
+        recordId: recordId,
+        fields: {
+          多行文本: JSON.stringify(cookielist)
+        }
+      }
+    ]
+  }
+  magicJS.post(
+    {
+      url: 'https://api.vika.cn/fusion/v1/datasheets/dstvpyxSRujo9BzNr1/records',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + vikaToken
+      },
+      body: JSON.stringify(obj)
+    },
+    (err, res, body) => {
+      if (err) {
+        magicJS.logError(`发送cookie失败：${err}`)
+      } else {
+        magicJS.log(`发送cookie成功：${body}`)
+      }
+    }
+  )
+}
+
 function parseArgs() {
   let args = {}
   let argStr = $argument || ''
@@ -40,6 +71,7 @@ function parseArgs() {
 let processArgs = parseArgs()
 let logLevel = processArgs.logLevel || 'INFO'
 let serverUrl = processArgs.url || 'http://192.168.31.33:8080/jd'
+let vikaToken = processArgs.vikaToken || 'uskSenkuMRMoQs17QMHOtD8'
 let flush = processArgs.flush === '1' || processArgs.flush === 'true'
 
 let magicJS = MagicJS(scriptName, logLevel)
@@ -85,7 +117,8 @@ if (magicJS.read(jd_cookie_key)) {
               magicJS.request.headers['Cookie'].split(';') || []
             cookielist.expireTime = time + 3600 * 1000
             magicJS.write(jd_cookie_key, JSON.stringify(cookielist))
-            sendCookie(cookielist)
+            // sendCookie(cookielist)
+            updateVikaField(cookielist)
           }
 
           // sendCookie(cookielist)
