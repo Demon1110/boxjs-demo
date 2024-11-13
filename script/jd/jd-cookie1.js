@@ -40,9 +40,9 @@ function updateVikaField(cookielist) {
     },
     (err, res, body) => {
       if (err) {
-        magicJS.logError(`发送cookie失败：${err}`)
+        magicJS.notifyDebug(`发送cookie失败：${err}`)
       } else {
-        magicJS.log(`发送cookie成功：${body}`)
+        magicJS.notifyDebug(`发送cookie成功：${body}`)
       }
     }
   )
